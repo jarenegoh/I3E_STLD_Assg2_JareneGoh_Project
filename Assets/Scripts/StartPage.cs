@@ -1,18 +1,22 @@
+/*
+ * Author: Jarene Goh
+ * Date: 13 June 2024
+ * Description: Script that controls the Start Page
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartPage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Play()
     {
-        
+        SceneManager.LoadScene("Game");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Quit()
     {
-        
+        Application.Quit();
     }
 }
