@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1357956156611071133}
+  - component: {fileID: 5322656010822686302}
+  - component: {fileID: 8023138728576131218}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: Untagged
@@ -33,6 +35,41 @@ Transform:
   - {fileID: 8758592591131180437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &5322656010822686302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2372587941599686667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacef68f81f0d4451a97614fb7f8b48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectAudio: {fileID: 8300000, guid: 68371631e18904dbc9f4e5198b0aa680, type: 3}
+  myScore: 5
+--- !u!65 &8023138728576131218
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2372587941599686667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3962630248245626123
 GameObject:
   m_ObjectHideFlags: 0
