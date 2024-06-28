@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Door : Interactable
 {
     [SerializeField]
     private AudioSource openAudio;
+
+    public TextMeshProUGUI doorText;
+    public GameObject doorBackground;
 
     public override void Interact(Player thePlayer)
     {
@@ -22,6 +26,28 @@ public class Door : Interactable
         {
             Debug.Log("You dont have everything you need to enter the castle!");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        bool hasMedal = GameManager.instance.HasMedal();
+
+        if (hasMedal == false)
+        {
+            doorText.text = "You need the medal from the tower!";
+            doorBackground.SetActive(true);
+        }
+        else
+        {
+            doorText.text = "Hit 'E' to interact!";
+            doorBackground.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        doorText.text = null;
+        doorBackground.SetActive(false);
     }
 
     public void OpenDoor()

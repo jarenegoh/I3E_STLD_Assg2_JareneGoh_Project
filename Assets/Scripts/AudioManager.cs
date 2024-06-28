@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -27,9 +28,11 @@ public class AudioManager : MonoBehaviour
         // Load saved volume settings
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+        bool isMute = false;
 
         SetMusicVolume(musicVolume);
         SetSFXVolume(sfxVolume);
+        MuteMusic(isMute);
     }
 
     public void SetMusicVolume(float volume)
@@ -42,6 +45,7 @@ public class AudioManager : MonoBehaviour
         {
             audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 25);
         }
+
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
@@ -55,6 +59,27 @@ public class AudioManager : MonoBehaviour
         {
             audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 25);
         }
+
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
+
+    public void MuteMusic(bool value)
+    {
+        if(value)
+        {
+            audioMixer.SetFloat("MusicVolume", -80f);
+        }
+        else
+        {
+            audioMixer.SetFloat("MusicVolume", 1.0f);
+        }
+    }
+
+    public void PlaySFX(AudioClip clip, Vector3 position)
+    {
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
+        AudioSource.PlayClipAtPoint(clip, position, sfxVolume);
+    }
 }
+
+    

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     // Player state variables
     private int currentScore = 0;
     public bool hasMedal = false;
+    public bool ownPotion = false;
 
     // Reference to the player
     private GameObject player;
@@ -175,12 +176,23 @@ public class GameManager : MonoBehaviour
     public void SetHasMedal(bool value)
     {
         hasMedal = value;
-        Debug.Log("You have collected the medal");
+        Debug.Log("Medal collected.");
     }
 
     public bool HasMedal()
     {
         return hasMedal;
+    }
+
+    public void SetHasPotion(bool value)
+    {
+        ownPotion = value;
+        Debug.Log("Potion collected.");
+    }
+
+    public bool OwnPotion()
+    {
+        return ownPotion;
     }
 
     public int GetScore()

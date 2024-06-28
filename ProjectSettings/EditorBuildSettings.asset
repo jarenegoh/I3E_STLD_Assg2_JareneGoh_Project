@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tower.unity
     guid: 59afc02dda4344fdb98cfca2f90bb039
+  - enabled: 1
+    path: Assets/Scenes/SpaceshipInterior.unity
+    guid: 3d03023806e6240b799f9e296f4ec87d
   m_configObjects: {}
