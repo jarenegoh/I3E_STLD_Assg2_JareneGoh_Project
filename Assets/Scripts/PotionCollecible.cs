@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PotionCollectible : Interactable
 {
+    [SerializeField]
+    private AudioClip collectAudio;
+
     /// <summary>
     /// bool for whether player has crystal
     /// </summary>
@@ -15,13 +18,14 @@ public class PotionCollectible : Interactable
     /// <param name="thePlayer"></param>
     public override void Interact(Player thePlayer)
     {
-        bool hasMedal = GameManager.instance.HasMedal();
+        bool ownMedal = GameManager.instance.OwnMedal();
         base.Interact(thePlayer);
        
-        if(hasMedal)
+        if(ownMedal)
         {
             ownPotion = true;
-            GameManager.instance.SetHasPotion(ownPotion);
+            GameManager.instance.SetOwnPotion(ownPotion);
+            AudioManager.instance.PlaySFX(collectAudio, transform.position);
             Destroy(gameObject);
             Debug.Log("Collected");
         }

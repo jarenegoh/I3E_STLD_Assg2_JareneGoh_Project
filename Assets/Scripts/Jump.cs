@@ -11,9 +11,6 @@ using TMPro;
 
 public class Jump : Interactable
 {
-    public TextMeshProUGUI jumpText;
-    public GameObject jumpBackground;
-
     /// <summary>
     /// The amount by which the player's jump height is increased.
     /// </summary>
@@ -21,14 +18,12 @@ public class Jump : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-            jumpText.text = "Hit 'E' to interact";
-            jumpBackground.SetActive(true);
+        UIChanger.instance.CollectibleTextTrue();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        jumpText.text = null;
-        jumpBackground.SetActive(false);
+        UIChanger.instance.CollectibleTextFalse();
     }
 
     /// <summary>
@@ -39,6 +34,7 @@ public class Jump : Interactable
     {
         base.Interact(thePlayer);
         thePlayer.GetComponent<StarterAssets.FirstPersonController>().JumpHeight += jumpIncrease;
+        UIChanger.instance.CollectibleTextFalse();
         Debug.Log(thePlayer.GetComponent<StarterAssets.FirstPersonController>().JumpHeight);
         Destroy(gameObject);
     }

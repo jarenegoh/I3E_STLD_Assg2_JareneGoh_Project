@@ -28,8 +28,19 @@ public class CollectiblePink : Interactable
         base.Interact(thePlayer);
         GameManager.instance.IncreaseScore(myScore);
         AudioSource.PlayClipAtPoint(collectAudio, transform.position, 1f);
+        UIChanger.instance.CollectibleTextFalse();
         Debug.Log("Collected");
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        UIChanger.instance.CollectibleTextTrue();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        UIChanger.instance.CollectibleTextFalse();
     }
 
 }

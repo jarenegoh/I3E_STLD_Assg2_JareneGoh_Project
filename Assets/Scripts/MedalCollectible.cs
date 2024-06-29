@@ -19,7 +19,7 @@ public class MedalCollectible : Interactable
     /// <summary>
     /// bool for whether player has crystal
     /// </summary>
-    public bool hasMedal;
+    public bool ownMedal;
 
     /// <summary>
     /// function for interacting with the crystal
@@ -28,8 +28,8 @@ public class MedalCollectible : Interactable
     public override void Interact(Player thePlayer)
     {
         base.Interact(thePlayer);
-        hasMedal = true;
-        GameManager.instance.SetHasMedal(hasMedal);
+        ownMedal = true;
+        GameManager.instance.SetOwnMedal(ownMedal);
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(collectAudio, transform.position, 0.5f);
         Debug.Log("Collected");

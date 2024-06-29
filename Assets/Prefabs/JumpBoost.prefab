@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6941520269682758189}
   - component: {fileID: 815579025282463585}
   - component: {fileID: 2448704709344541149}
+  - component: {fileID: -509695954857596}
   m_Layer: 0
   m_Name: JumpBoost
   m_TagString: Untagged
@@ -120,6 +121,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdee90d0ac004f2da82f862833cb286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpText: {fileID: 0}
-  jumpBackground: {fileID: 0}
   jumpIncrease: 10
+--- !u!65 &-509695954857596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568613411801296840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

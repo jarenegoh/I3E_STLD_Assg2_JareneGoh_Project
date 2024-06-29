@@ -11,9 +11,6 @@ using TMPro;
 
 public class Speed : Interactable
 {
-    public TextMeshProUGUI speedText;
-    public GameObject speedBackground;
-
     /// <summary>
     /// The amount by which the player's speed is increased.
     /// </summary>
@@ -21,14 +18,12 @@ public class Speed : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        speedText.text = "Hit 'E' to interact";
-        speedBackground.SetActive(true);
+        UIChanger.instance.CollectibleTextTrue();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        speedText.text = null;
-        speedBackground.SetActive(false);
+        UIChanger.instance.CollectibleTextFalse();
     }
 
     /// <summary>
@@ -39,6 +34,7 @@ public class Speed : Interactable
     {
         base.Interact(thePlayer);
         thePlayer.GetComponent<StarterAssets.FirstPersonController>().MoveSpeed += speedIncrease;
+        UIChanger.instance.CollectibleTextFalse();
         Debug.Log(thePlayer.GetComponent<StarterAssets.FirstPersonController>().MoveSpeed);
         Destroy(gameObject);
 

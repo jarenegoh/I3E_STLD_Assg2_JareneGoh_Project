@@ -66,6 +66,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnPause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     // Update is called once per frame
     void Update()

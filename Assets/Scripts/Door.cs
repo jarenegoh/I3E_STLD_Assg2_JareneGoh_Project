@@ -14,18 +14,17 @@ public class Door : Interactable
     [SerializeField]
     private AudioSource openAudio;
 
-    public TextMeshProUGUI doorText;
-    public GameObject doorBackground;
 
     public override void Interact(Player thePlayer)
     {
         base.Interact(thePlayer);
 
-        bool hasMedal = GameManager.instance.HasMedal();
+        bool ownMedal = GameManager.instance.OwnMedal();
         int currentScore = GameManager.instance.GetScore();
 
-        if (hasMedal && currentScore >= 5)
+        if (ownMedal && currentScore >= 10)
         {
+            UIChanger.instance.DoorTextFalse();
             OpenDoor();
         }
         else
@@ -36,24 +35,21 @@ public class Door : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        bool hasMedal = GameManager.instance.HasMedal();
+        bool ownMedal = GameManager.instance.OwnMedal();
 
-        if (hasMedal == false)
+        if (ownMedal == false)
         {
-            doorText.text = "You need the medal from the tower!";
-            doorBackground.SetActive(true);
+            UIChanger.instance.DoorTextTrue("You need the medal to enter the castle!");
         }
         else
         {
-            doorText.text = "Hit 'E' to interact!";
-            doorBackground.SetActive(true);
+            UIChanger.instance.DoorTextTrue("Hit 'E' to interact!");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        doorText.text = null;
-        doorBackground.SetActive(false);
+        UIChanger.instance.DoorTextFalse();
     }
 
     public void OpenDoor()

@@ -29,10 +29,11 @@ public class GameManager : MonoBehaviour
     public Slider healthSlider;
     public GameObject deathScreenUI;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI medalText;
 
     // Player state variables
     private int currentScore = 0;
-    public bool hasMedal = false;
+    public bool ownMedal = false;
     public bool ownPotion = false;
 
     // Reference to the player
@@ -173,20 +174,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void SetHasMedal(bool value)
+    public void SetOwnMedal(bool value)
     {
-        hasMedal = value;
+        ownMedal = value;
+        medalText.text = "Medal";
         Debug.Log("Medal collected.");
     }
 
-    public bool HasMedal()
+    public bool OwnMedal()
     {
-        return hasMedal;
+        return ownMedal;
     }
 
-    public void SetHasPotion(bool value)
+    public void SetOwnPotion(bool value)
     {
         ownPotion = value;
+        medalText.text = "Potion";
         Debug.Log("Potion collected.");
     }
 
