@@ -1,3 +1,9 @@
+/*
+ * Author: Jarene Goh
+ * Date: 24 June 2024
+ * Description: Script that controls the Interactables
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

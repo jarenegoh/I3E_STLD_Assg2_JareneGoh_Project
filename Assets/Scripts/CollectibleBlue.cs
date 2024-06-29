@@ -1,3 +1,9 @@
+/*
+ * Author: Jarene Goh
+ * Date: 28 June 2024
+ * Description: Script that controls the Blue Collectible
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
