@@ -16,11 +16,19 @@ public class Speed : Interactable
     /// </summary>
     public float speedIncrease = 3.0f;
 
+    /// <summary>
+    /// Called when another collider enters the trigger collider attached to this GameObject.
+    /// </summary>
+    /// <param name="other">The Collider of the object that entered the trigger.</param>
     private void OnTriggerEnter(Collider other)
     {
         UIChanger.instance.CollectibleTextTrue();
     }
 
+    /// <summary>
+    /// Called when another collider exits the trigger collider attached to this GameObject.
+    /// </summary>
+    /// <param name="other">The Collider of the object that exited the trigger.</param>
     private void OnTriggerExit(Collider other)
     {
         UIChanger.instance.CollectibleTextFalse();

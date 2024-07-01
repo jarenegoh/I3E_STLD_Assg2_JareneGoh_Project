@@ -13,40 +13,96 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance of the GameManager.
+    /// </summary>
     public static GameManager instance;
 
-    // Player attributes
+    /// <summary>
+    /// The player's maximum health.
+    /// </summary>
     public float maxHealth = 100f;
+
+    /// <summary>
+    /// The player's current health.
+    /// </summary>
     private float currentHealth;
 
-    // Fall damage attributes
+    /// <summary>
+    /// The height at which the player started falling.
+    /// </summary>
     private float fallStartHeight;
-    private bool isFalling;
-    [SerializeField] private float minFallDistance = 5f; // Minimum distance to start taking damage
-    [SerializeField] private float damageMultiplier = 1f; // Multiplier for damage calculation
 
-    // UI elements
+    /// <summary>
+    /// Indicates whether the player is currently falling.
+    /// </summary>
+    private bool isFalling;
+
+    /// <summary>
+    /// The minimum distance the player must fall to take damage.
+    /// </summary>
+    [SerializeField] private float minFallDistance = 5f;
+
+    /// <summary>
+    /// Multiplier for calculating fall damage.
+    /// </summary>
+    [SerializeField] private float damageMultiplier = 1f;
+
+    /// <summary>
+    /// Slider UI element to display the player's health.
+    /// </summary>
     public Slider healthSlider;
+
+    /// <summary>
+    /// UI element to display upon player's death.
+    /// </summary>
     public GameObject deathScreenUI;
+
+    /// <summary>
+    /// UI element for the pause screen.
+    /// </summary>
     public GameObject PauseScreen;
+
+    /// <summary>
+    /// UI text element for displaying the score.
+    /// </summary>
     public TextMeshProUGUI scoreText;
+
+    /// <summary>
+    /// UI text element for displaying medals or potions.
+    /// </summary>
     public TextMeshProUGUI medalText;
 
-    // Player state variables
+    /// <summary>
+    /// The player's current score.
+    /// </summary>
     private int currentScore = 0;
+
+    /// <summary>
+    /// Indicates whether the player owns a medal.
+    /// </summary>
     public bool ownMedal = false;
+
+    /// <summary>
+    /// Indicates whether the player owns a potion.
+    /// </summary>
     public bool ownPotion = false;
 
-    // Reference to the player
+    /// <summary>
+    /// Reference to the player GameObject.
+    /// </summary>
     private GameObject player;
 
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            currentHealth = maxHealth; // Initialize health here
+            currentHealth = maxHealth;
         }
         else if (instance != null && instance != this)
         {
@@ -54,17 +110,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// </summary>
     private void Start()
     {
         InitializePlayer();
-        SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    /// <summary>
+    /// Called when the script is being destroyed.
+    /// </summary>
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Unsubscribe from scene loaded event
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    /// <summary>
+    /// Called when a scene is loaded.
+    /// </summary>
+    /// <param name="scene">The loaded scene.</param>
+    /// <param name="mode">The scene load mode.</param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         InitializePlayer();
@@ -75,6 +142,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes the player by finding the player GameObject and updating the health UI.
+    /// </summary>
     private void InitializePlayer()
     {
         player = GameObject.FindWithTag("Player");
@@ -83,7 +153,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Reapply the current health to the player
         UpdateHealthUI();
         if (deathScreenUI != null)
         {
@@ -91,6 +160,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increases the player's score.
+    /// </summary>
+    /// <param name="scoreAdded">The amount of score to add.</param>
     public void IncreaseScore(int scoreAdded)
     {
         currentScore += scoreAdded;
@@ -98,6 +171,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentScore);
     }
 
+    /// <summary>
+    /// Update is called once per frame.
+    /// </summary>
     private void Update()
     {
         if (player == null)
@@ -105,14 +181,12 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Check for falling start
         if (!isFalling && !IsGrounded())
         {
             isFalling = true;
             fallStartHeight = player.transform.position.y;
         }
 
-        // Check for landing
         if (isFalling && IsGrounded())
         {
             isFalling = false;
@@ -124,12 +198,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the player is grounded.
+    /// </summary>
+    /// <returns>True if the player is grounded, otherwise false.</returns>
     private bool IsGrounded()
     {
-        // Adjust this to fit your game's grounding logic, for example using Raycast
         return Physics.Raycast(player.transform.position, Vector3.down, 1.1f);
     }
 
+    /// <summary>
+    /// Applies fall damage to the player based on the fall distance.
+    /// </summary>
+    /// <param name="fallDistance">The distance the player fell.</param>
     private void ApplyFallDamage(float fallDistance)
     {
         float damage = (fallDistance - minFallDistance) * damageMultiplier;
@@ -137,6 +218,9 @@ public class GameManager : MonoBehaviour
         TakeDamage(damage);
     }
 
+    /// <summary>
+    /// Updates the health UI to reflect the player's current health.
+    /// </summary>
     void UpdateHealthUI()
     {
         if (healthSlider != null)
@@ -145,6 +229,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reduces the player's health by a specified amount.
+    /// </summary>
+    /// <param name="amount">The amount of damage to apply.</param>
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
@@ -157,6 +245,9 @@ public class GameManager : MonoBehaviour
         UpdateHealthUI();
     }
 
+    /// <summary>
+    /// Handles the player's death.
+    /// </summary>
     void Die()
     {
         if (deathScreenUI != null)
@@ -169,15 +260,24 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player has died.");
     }
 
+    /// <summary>
+    /// Loads the main menu scene.
+    /// </summary>
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Restarts the game by resetting health, score, and other player states.
+    /// </summary>
     public void Restart()
     {
+        Time.timeScale = 1f;
         currentHealth = maxHealth;
         UpdateHealthUI();
         currentScore = 0;
@@ -188,9 +288,15 @@ public class GameManager : MonoBehaviour
 
         UIChanger.instance.CongratsBackgroundFalse();
         PauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         SceneManager.LoadScene(1);
     }
 
+    /// <summary>
+    /// Sets the player's medal ownership status.
+    /// </summary>
+    /// <param name="value">True if the player owns a medal, otherwise false.</param>
     public void SetOwnMedal(bool value)
     {
         ownMedal = value;
@@ -198,11 +304,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("Medal collected.");
     }
 
+    /// <summary>
+    /// Gets the player's medal ownership status.
+    /// </summary>
+    /// <returns>True if the player owns a medal, otherwise false.</returns>
     public bool OwnMedal()
     {
         return ownMedal;
     }
 
+    /// <summary>
+    /// Sets the player's potion ownership status.
+    /// </summary>
+    /// <param name="value">True if the player owns a potion, otherwise false.</param>
     public void SetOwnPotion(bool value)
     {
         ownPotion = value;
@@ -210,13 +324,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Potion collected.");
     }
 
+    /// <summary>
+    /// Gets the player's potion ownership status.
+    /// </summary>
+    /// <returns>True if the player owns a potion, otherwise false.</returns>
     public bool OwnPotion()
     {
         return ownPotion;
     }
 
+    /// <summary>
+    /// Gets the player's current score.
+    /// </summary>
+    /// <returns>The current score.</returns>
     public int GetScore()
     {
         return currentScore;
     }
+
 }

@@ -374,7 +374,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Designed and created by: \nJarene Goh\n\nSFX from I3E Sample audio pack:\n\"Free
-    Pack\", \"Free Fantasy Adventure Music Pack\", \"Casual Game Sounds\".\n\n\n"
+    Pack\", \"Free Fantasy Adventure Music Pack\", \"Casual Game Sounds\".\n\nCharacters
+    from Unity Assets store - \"Stylized NPC - Peasant Nolan\", \"Animals Free\"\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c706c068230d4bcab36d57ac80c4da7, type: 2}
   m_sharedMaterial: {fileID: 2015457760379594217, guid: 2c706c068230d4bcab36d57ac80c4da7, type: 2}
@@ -401,8 +402,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5316,7 +5317,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 718421580}
         m_TargetAssemblyTypeName: StartPage, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1

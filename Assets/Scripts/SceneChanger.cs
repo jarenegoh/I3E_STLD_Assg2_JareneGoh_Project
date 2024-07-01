@@ -11,11 +11,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    /// <summary>
+    /// The index of the target scene to load.
+    /// </summary>
     public int targetSceneIndex;
+
+    /// <summary>
+    /// Called when another collider enters the trigger collider attached to this GameObject.
+    /// </summary>
+    /// <param name="other">The Collider of the object that entered the trigger.</param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        // Check if the collider belongs to the player
+        if (other.CompareTag("Player"))
         {
+            // Load the specified scene
             SceneManager.LoadScene(targetSceneIndex);
         }
     }
