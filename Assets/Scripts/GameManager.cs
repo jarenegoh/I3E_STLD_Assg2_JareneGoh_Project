@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     // UI elements
     public Slider healthSlider;
     public GameObject deathScreenUI;
+    public GameObject PauseScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI medalText;
 
@@ -172,6 +173,22 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
+    }
+
+    public void Restart()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+        currentScore = 0;
+        scoreText.text = null;
+        ownMedal = false;
+        ownPotion = false;
+        medalText.text = null;
+
+        UIChanger.instance.CongratsBackgroundFalse();
+        PauseScreen.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 
     public void SetOwnMedal(bool value)

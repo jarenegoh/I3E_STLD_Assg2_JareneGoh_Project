@@ -14,7 +14,7 @@ public class Jump : Interactable
     /// <summary>
     /// The amount by which the player's jump height is increased.
     /// </summary>
-    public float jumpIncrease = 10.0f;
+    public float jumpIncrease = 3.0f;
 
     private void OnTriggerEnter(Collider other)
     {

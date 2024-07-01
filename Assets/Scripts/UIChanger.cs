@@ -19,6 +19,8 @@ public class UIChanger : MonoBehaviour
     public TextMeshProUGUI collectibleText;
     public GameObject collectibleBackground;
 
+    public GameObject congratsBackground;
+
     private void Awake()
     {
         if (instance == null)
@@ -54,5 +56,15 @@ public class UIChanger : MonoBehaviour
     {
         collectibleText.text = null;
         collectibleBackground.SetActive(false);
+    }
+
+    public void CongratsBackgroundTrue()
+    {
+        congratsBackground.SetActive(true);
+    }
+
+    public void CongratsBackgroundFalse()
+    {
+        congratsBackground.SetActive(false);
     }
 }

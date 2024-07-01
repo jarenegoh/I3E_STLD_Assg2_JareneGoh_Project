@@ -47,7 +47,7 @@ public class StartPage : MonoBehaviour
     public void Play()
     {
         // Loads the Game Scene when the 'Play' button is clicked
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(3);
     }
 
     public void Quit()

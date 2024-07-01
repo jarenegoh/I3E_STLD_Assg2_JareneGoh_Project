@@ -14,7 +14,7 @@ public class Speed : Interactable
     /// <summary>
     /// The amount by which the player's speed is increased.
     /// </summary>
-    public float speedIncrease = 10.0f;
+    public float speedIncrease = 3.0f;
 
     private void OnTriggerEnter(Collider other)
     {

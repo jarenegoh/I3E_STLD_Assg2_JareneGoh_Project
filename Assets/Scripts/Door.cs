@@ -22,7 +22,7 @@ public class Door : Interactable
         bool ownMedal = GameManager.instance.OwnMedal();
         int currentScore = GameManager.instance.GetScore();
 
-        if (ownMedal && currentScore >= 10)
+        if (ownMedal && currentScore >= 20)
         {
             UIChanger.instance.DoorTextFalse();
             OpenDoor();

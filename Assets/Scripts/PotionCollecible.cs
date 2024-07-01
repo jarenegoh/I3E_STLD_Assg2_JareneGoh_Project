@@ -30,4 +30,14 @@ public class PotionCollectible : Interactable
             Debug.Log("Collected");
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        UIChanger.instance.CollectibleTextTrue();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        UIChanger.instance.CollectibleTextFalse();
+    }
 }
